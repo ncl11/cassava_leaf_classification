@@ -1,0 +1,27 @@
+// Text for EDA portion of first blog post
+
+We begin the EDA process by examining the labels of the dataset. The images are classified into five categories, four of which are different diseases that the plant can have. The fifth class is a healthy plant which has none of these four diseases. The number of images in the training data set for each class is first determined.
+
+// This information should be formatted somehow as a table. If the blog editor doesn't have a table feature, let me know and I can just make an image of the table.
+
+Cassava Bacterial Blight (CBB)          1087
+Cassava Brown Streak Disease (CBSD)     2189
+Cassava Green Mottle (CGM)              2386
+Cassava Mosaic Disease (CMD)           13158
+Healthy                                 2577
+
+The majority of the images are the Cassava Mosaic Disease, so the baseline accuracy is 61.5%, which corresponds to a model that only predicts this label for all inputs.
+
+The next step in the EDA process is to examine some representative images from each class to attempt to identify by eye some features that can potentially be exploited by the model. Samples from each class were randomly drawn and are shown below, where the images in each column all belong to the class listed at the top of the column.
+
+// Insert "eda-sample-images.png" image here
+
+A couple of immediately noticeable features are the yellow color and drooping shape of the leaves that have CBB and CBSD. Another feature is the discolored spots that show up on the leaves, like those in the last image for the CBB column.
+
+Another insight from this EDA process is learning that the photos are all taken at various angles and lighting conditions. Some photos show the leaves from a top-down perspective, while other photos are taken level with the plant, which exposes the stems of the plant in addition to the leaves. Finally, there are a number of outliers and irregularities in the dataset, which include images of the flesh of the plant
+
+// Insert "9224019.jpg" image here
+
+as well as images that contain a person in the frame
+
+// Insert "107350755.jpg" image and "23975111.jpg" image here
