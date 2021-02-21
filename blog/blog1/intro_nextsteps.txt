@@ -1,0 +1,13 @@
+# Intro
+In case the word “cassava” doesn’t ring any bells, it is an extensively cultivated plant in the tropics, and is a major food staple in those regions. However, despite its resilience to harsh conditions, cassava is often affected by viral diseases, which can inflict serious damage to crop yield. An important procedure in cassava cultivation is thus the identification of disease-ridden plants so that they can be promptly removed before the disease can spread further. This inspection process has traditionally been done manually by agriculture experts, but this is both costly and inefficient. With the recent maturity of computer vision, it is hopeful that the inspection process can be delegated to machines in the very near future. Deploying machine learning models that can accurately classify disease-ridden cassava plants can be an efficient and cost-effective tool to aid cassava farmers protect their crops. 
+
+This is the first of a series of blog posts documenting our team’s effort in developing a neural network to accurately identify the type of disease present in cassava leaves images. The dataset consists of crowdsourced cassava plant images, each labelled as having one of four disease or as being healthy. The original training data consists of 21397 images, which we will add to through data augmentation (more on this later). In this entry, we will be discussing our findings from EDA, as well as our results from a baseline model. 
+// some of the last paragraph might overlap with subsequent section
+
+
+# Next steps
+With EDA and data augmentation out of the way, the bulk of upcoming efforts would be to build on our current baseline model, by implementing more sophisticated architecture, training for more epochs, and tuning hyperparameters. We certainly aim to achieve a validation accuracy way beyond the baseline of 61.5%.
+// Optional part to include/ for discussion:
+Further things to consider: might it be sensible to distinguish between leaf images and root images and train separate models for each (would the highly contrasting features in leaf and root images come into conflict when making classifications?)
+
+
