@@ -9,7 +9,8 @@ from tensorflow.keras.layers.experimental import preprocessing
 
 
 def initialize_dataset(tfrecord_files, batch_size=1, labelled=True,
-                       img_size=None, flip=False, rot=(0, 0)):
+                       img_size=None, flip=False, rot=(0, 0),
+                       crop_size=None, crop_random=False):
     """Creates a Tensorflow Dataset from a list of TFRecord filenames"""
     # Create the initial dataset with the TFRecord files
     raw_dataset = tf.data.TFRecordDataset(filenames=tfrecord_files)
@@ -57,7 +58,7 @@ def initialize_dataset(tfrecord_files, batch_size=1, labelled=True,
         num_parallel_calls=tf.data.experimental.AUTOTUNE
     )
 
-    # Prefetch the data
+    # Prefetch the data or cache it in memory
     dataset = dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
 
     # Apply a batch size to the dataset
@@ -66,16 +67,23 @@ def initialize_dataset(tfrecord_files, batch_size=1, labelled=True,
     # Initialize the data augmentation pipeline
     data_aug = tf.keras.Sequential()
 
-    # Add resizing if specified
-    if img_size is not None:
-        data_aug.add(preprocessing.Resizing(*img_size))
-
     # Add random flipping if specified
     if flip:
         data_aug.add(preprocessing.RandomFlip())
 
     # Add random rotations
     data_aug.add(preprocessing.RandomRotation(rot))
+
+    # Add cropping is required
+    if crop_size is not None:
+        if crop_random:
+            data_aug.add(preprocessing.RandomCrop(*crop_size))
+        else:
+            data_aug.add(preprocessing.CenterCrop(*crop_size))
+
+    # Add resizing if specified
+    if img_size is not None:
+        data_aug.add(preprocessing.Resizing(*img_size))
 
     # Apply the data augmentation pipeline
     if labelled:
